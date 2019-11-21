@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
 import java.math.BigDecimal;
 
 @Entity
@@ -26,8 +25,7 @@ public class LineItem {
     private Invoice invoice;
 
     public BigDecimal getLineItemTotal(){
-        BigDecimal bigDecimal = BigDecimal.valueOf(unitPrice * quantity);
-        bigDecimal.setScale(2);
-        return bigDecimal;
+        BigDecimal lineTotal = BigDecimal.valueOf(unitPrice * quantity);
+        return lineTotal.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 }
